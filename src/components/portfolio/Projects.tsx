@@ -14,8 +14,8 @@ import cards from "@/assets/PowerBi/cards.png";
 import colors from "@/assets/PowerBi/colors.png";
 import  iconButton from "@/assets/PowerBi/IconButton.png";
 import proyectosEnkGif from "@/assets/SGP/proyectos_enk.gif";
-import pua_user from "@/assets/PUA/pua_user.gif";
-import pua_admin from "@/assets/PUA/pua_admin.gif";
+import pua_user from "@/assets/PUA/Pua_user.gif";
+import pua_admin from "@/assets/PUA/Pua_admin.gif";
 import {
   Dialog,
   DialogContent,
