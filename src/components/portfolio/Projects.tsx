@@ -16,6 +16,12 @@ import  iconButton from "@/assets/PowerBi/IconButton.png";
 import proyectosEnkGif from "@/assets/SGP/proyectos_enk.gif";
 import pua_user from "@/assets/PUA/Pua_user.gif";
 import pua_admin from "@/assets/PUA/Pua_admin.gif";
+import promitia from "@/assets/hackIA/promitia.jpg";
+import profile from "@/assets/hackIA/profile.png";
+import dashboard from "@/assets/hackIA/dashboard.png";
+import landingpage from "@/assets/hackIA/landingpage.png";
+import crearCuenta from "@/assets/hackIA/crearCuenta.png";
+import search from "@/assets/hackIA/search.png";
 import {
   Dialog,
   DialogContent,
@@ -47,6 +53,23 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "PromítIA",
+    subtitle: "Concept and visual design developed with AI in one day for a hackathon challenge.",
+    category: "Hackathon · AI · Design",
+    year: "2026",
+    img: promitia,
+    previewMediaItems: [
+      { src: landingpage, alt: "Landing page view" },
+      { src: crearCuenta, alt: "Create account view" },
+      { src: dashboard, alt: "Dashboard view" },
+      { src: search, alt: "Search view" },
+      { src: profile, alt: "Profile view" },
+    ],
+    figma: "https://www.figma.com/design/WUknKvb3VDtmxAIVCzhhmB/BTU---Prom%C3%ADtIA?node-id=9-249&t=QDXf7lUiEJ3xpePu-1",
+    size: "md",
+    accent: "from-primary/25 to-transparent",
+  },
+  {
     title: "Scry",
     subtitle: "Intelligent chatbot that you can ask in natural language for information about your database.",
     category: "Web · Education",
@@ -72,28 +95,6 @@ const projects: Project[] = [
     size: "md",
   },
   {
-    title: "SGP",
-    subtitle: "Project management system.",
-    category: "Web · Administration",
-    year: "2024",
-    img: Sgp,
-    previewMediaItems: [
-      { src: darkmodeProposalGif, alt: "SGP dark mode proposal 1" },
-      { src: proyectosEnkGif, alt: "SGP dark mode proposal 2" },
-    ],
-    size: "md",
-  },
-  {
-    title: "RUDD",
-    subtitle: "Collaboration work - Find the career you've always been looking for",
-    category: "Web · Education",
-    year: "2025",
-    img: travel,
-    figma: "https://www.figma.com/design/3H2x5OOKPC5LTaeYt5ZVBt/Act_3_2_Gonz%C3%A1lez_Ericka_Hern%C3%A1ndez_Elizabeth?node-id=662-29727&t=ngKsz5ZDCfHFBF7G-1",
-    prototype: "https://www.figma.com/proto/3H2x5OOKPC5LTaeYt5ZVBt/Act_3_2_Gonz%C3%A1lez_Ericka_Hern%C3%A1ndez_Elizabeth?node-id=662-29727&t=LKAhRnUYdNs7ElBo-1&scaling=min-zoom&content-scaling=fixed&page-id=210%3A2368&starting-point-node-id=662%3A29727",
-    size: "md",
-  },
-  {
     title: "Power BI component library",
     subtitle: "Components and templates ready for use.",
     category: "Resources . Design system",
@@ -109,6 +110,28 @@ const projects: Project[] = [
       { src: colors, alt: "Power BI component library image 3" },
     ],
     size: "lg",
+  },
+  {
+    title: "RUDD",
+    subtitle: "Collaboration work - Find the career you've always been looking for",
+    category: "Web · Education",
+    year: "2025",
+    img: travel,
+    figma: "https://www.figma.com/design/3H2x5OOKPC5LTaeYt5ZVBt/Act_3_2_Gonz%C3%A1lez_Ericka_Hern%C3%A1ndez_Elizabeth?node-id=662-29727&t=ngKsz5ZDCfHFBF7G-1",
+    prototype: "https://www.figma.com/proto/3H2x5OOKPC5LTaeYt5ZVBt/Act_3_2_Gonz%C3%A1lez_Ericka_Hern%C3%A1ndez_Elizabeth?node-id=662-29727&t=LKAhRnUYdNs7ElBo-1&scaling=min-zoom&content-scaling=fixed&page-id=210%3A2368&starting-point-node-id=662%3A29727",
+    size: "md",
+  },
+  {
+    title: "SGP",
+    subtitle: "Project management system.",
+    category: "Web · Administration",
+    year: "2024",
+    img: Sgp,
+    previewMediaItems: [
+      { src: darkmodeProposalGif, alt: "SGP dark mode proposal 1" },
+      { src: proyectosEnkGif, alt: "SGP dark mode proposal 2" },
+    ],
+    size: "md",
   },
 ];
 
@@ -129,6 +152,7 @@ function ProjectCard({ p }: { p: Project }) {
   const [previewOpen, setPreviewOpen] = useState(false);
   const previewOnlyTitles = ["PUA", "SGP", "Power BI component library"];
   const isPreviewOnly = previewOnlyTitles.includes(p.title);
+  const isPromitia = p.title === "PromítIA";
   const previewItems = p.previewMediaItems ?? (p.previewMediaUrl ? [{ src: p.previewMediaUrl, alt: `${p.title} preview media` }] : []);
 
   return (
@@ -194,42 +218,91 @@ function ProjectCard({ p }: { p: Project }) {
             </button>
           ) : (
             <>
-              {p.pageUrl ? (
+              {isPromitia ? (
+                <>
+                  <a
+                    href={p.figma}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-border bg-card px-3.5 py-2 text-[11px] font-semibold transition-colors hover:bg-foreground hover:text-background"
+                    aria-label={`View ${p.title} design in Figma`}
+                  >
+                    View Design
+                  </a>
+                  {p.pageUrl ? (
+                    <a
+                      href={p.pageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full border border-border bg-card px-3.5 py-2 text-[11px] font-semibold transition-colors hover:bg-foreground hover:text-background"
+                      aria-label={`Open ${p.title} live page`}
+                    >
+                      Beta page
+                    </a>
+                  ) : null}
+                  {previewItems.length > 0 ? (
+                    <button
+                      type="button"
+                      onClick={() => setPreviewOpen(true)}
+                      className="rounded-full bg-primary px-3.5 py-2 text-[11px] font-semibold text-primary-foreground transition-transform hover:scale-105"
+                      aria-label={`Preview ${p.title}`}
+                    >
+                      Preview ↗
+                    </button>
+                  ) : null}
+                </>
+              ) : (
+                <>
+                  {previewItems.length > 0 ? (
+                    <button
+                      type="button"
+                      onClick={() => setPreviewOpen(true)}
+                      className="rounded-full bg-primary px-3.5 py-2 text-[11px] font-semibold text-primary-foreground transition-transform hover:scale-105"
+                      aria-label={`Preview ${p.title}`}
+                    >
+                      Preview ↗
+                    </button>
+                  ) : null}
+                  {p.pageUrl ? (
+                    <a
+                      href={p.pageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full border border-border bg-card px-3.5 py-2 text-[11px] font-semibold transition-colors hover:bg-foreground hover:text-background"
+                      aria-label={`Open ${p.title} live page`}
+                    >
+                      Beta page
+                    </a>
+                  ) : null}
+                  <a
+                    href={p.figma}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-border bg-card px-3.5 py-2 text-[11px] font-semibold transition-colors hover:bg-foreground hover:text-background"
+                    aria-label={`View ${p.title} design in Figma`}
+                  >
+                    View Design
+                  </a>
+                </>
+              )}
+              {p.prototype && p.title !== "PromítIA" ? (
                 <a
-                  href={p.pageUrl}
+                  href={p.prototype}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-border bg-card px-3.5 py-2 text-[11px] font-semibold transition-colors hover:bg-foreground hover:text-background"
-                  aria-label={`Open ${p.title} live page`}
+                  className="rounded-full bg-primary px-3.5 py-2 text-[11px] font-semibold text-primary-foreground transition-transform hover:scale-105"
+                  aria-label={`View ${p.title} interactive prototype`}
                 >
-                  Beta page
+                  Prototype ↗
                 </a>
               ) : null}
-              <a
-                href={p.figma}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-border bg-card px-3.5 py-2 text-[11px] font-semibold transition-colors hover:bg-foreground hover:text-background"
-                aria-label={`View ${p.title} design in Figma`}
-              >
-                View Design
-              </a>
-              <a
-                href={p.prototype}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-primary px-3.5 py-2 text-[11px] font-semibold text-primary-foreground transition-transform hover:scale-105"
-                aria-label={`View ${p.title} interactive prototype`}
-              >
-                Prototype ↗
-              </a>
             </>
           )}
         </div>
       </div>
       </article>
 
-      {isPreviewOnly ? (
+      {previewItems.length > 0 ? (
         <DialogContent className="max-w-4xl">
           <DialogHeader>
             <DialogTitle>{p.title} preview</DialogTitle>
@@ -243,7 +316,7 @@ function ProjectCard({ p }: { p: Project }) {
                 {previewItems.map((item) => (
                   <CarouselItem key={item.alt}>
                     <div className="overflow-hidden rounded-2xl border border-border bg-card">
-                      <img src={item.src} alt={item.alt} className="h-auto w-full object-cover" />
+                      <img src={item.src} alt={item.alt} className="h-auto w-full object-contain max-h-[70vh]" />
                     </div>
                   </CarouselItem>
                 ))}
@@ -256,7 +329,7 @@ function ProjectCard({ p }: { p: Project }) {
               <img
                 src={previewItems[0]?.src}
                 alt={previewItems[0]?.alt ?? `${p.title} preview gif`}
-                className="h-auto w-full object-cover"
+                className="h-auto w-full object-contain max-h-[70vh]"
               />
             </div>
           )}
